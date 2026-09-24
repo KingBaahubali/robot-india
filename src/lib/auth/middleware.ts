@@ -6,9 +6,13 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
+  // Provide fallback values so Vercel doesn't crash on Edge if env vars aren't set yet
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co'
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'dummy-key'
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    supabaseUrl,
+    supabaseKey,
     {
       cookies: {
         getAll() {
@@ -28,7 +32,6 @@ export async function updateSession(request: NextRequest) {
   )
 
   // This will refresh session if expired - required for Server Components
-  // https://supabase.com/docs/guides/auth/server-side/nextjs
   await supabase.auth.getUser()
 
   return supabaseResponse
