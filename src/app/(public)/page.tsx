@@ -1,173 +1,251 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Search, MapPin, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className="flex flex-col gap-16 pb-16">
-      {/* Hero Section */}
-      <section className="relative px-4 md:px-8 lg:px-16 pt-20 pb-24 overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#111619] via-[#1a2226] to-[#111619] -z-10" />
+    <div className="bg-[#050505] min-h-screen text-foreground pt-20">
+      
+      {/* 1. Hero Section */}
+      <section className="relative w-full h-[600px] flex items-center overflow-hidden border-b border-white/5">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent z-10" />
+          <Image 
+            src="/hero.jpg" 
+            alt="Hero Robot Dog" 
+            fill 
+            className="object-cover object-right md:object-[70%_center]"
+            priority
+          />
+        </div>
         
-        <div className="max-w-[1280px] mx-auto text-center md:text-left flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1 space-y-6">
-            <p className="text-accent text-sm font-semibold tracking-wider uppercase">
-              Real robots, real applications. For a brighter India.
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-foreground">
-              Find the right robot <br className="hidden md:block"/> for India
-            </h1>
-            <p className="text-lg text-muted max-w-xl">
-              Compare robots, check India pricing, connect with trusted vendors and get expert guidance.
-            </p>
-            
-            <div className="bg-white/5 border border-white/10 p-2 rounded-full max-w-2xl flex flex-col md:flex-row md:items-center mt-8 gap-2 md:gap-0">
-              <div className="flex-1 flex items-center px-4 gap-2 md:border-r border-white/10">
-                <Search className="w-5 h-5 text-muted" />
-                <input 
-                  type="text" 
-                  placeholder="Search robots, use cases or brands..." 
-                  className="bg-transparent border-none focus:outline-none text-foreground w-full py-2"
-                />
-              </div>
-              <div className="hidden md:flex items-center px-4 gap-2 text-muted whitespace-nowrap">
-                <MapPin className="w-4 h-4" />
-                <span>All India</span>
-              </div>
-              <button className="bg-accent text-[#111619] px-8 py-3 rounded-full font-semibold hover:bg-accent/90 transition-colors ml-0 md:ml-2 w-full md:w-auto">
-                Explore robots
-              </button>
-            </div>
-            
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-muted pt-4">
-              <span>Popular:</span>
-              <span className="bg-white/5 px-3 py-1 rounded-full border border-white/10">Delivery robot</span>
-              <span className="bg-white/5 px-3 py-1 rounded-full border border-white/10">STEM kit</span>
-              <span className="bg-white/5 px-3 py-1 rounded-full border border-white/10">Surveillance</span>
-              <span className="bg-white/5 px-3 py-1 rounded-full border border-white/10">Agriculture</span>
-            </div>
+        <div className="relative z-20 max-w-[1400px] mx-auto px-6 w-full pt-12">
+          <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] mb-6 max-w-2xl">
+            Find the right robot.<br />
+            <span className="text-foreground/90">Understand every detail.</span>
+          </h1>
+          <p className="text-lg text-foreground/80 mb-10 max-w-xl">
+            Explore robots for your home, business or research.
+          </p>
+
+          <div className="relative max-w-md mb-8">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+            <input 
+              type="text"
+              placeholder="Search a robot, brand or task..."
+              className="w-full bg-[#121312]/80 border border-white/10 rounded-full pl-12 pr-6 py-3 text-sm focus:outline-none focus:border-[#E8C988] transition-colors"
+            />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link href="/robots" className="bg-[#E8C988] text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#E8C988]/90 transition-colors flex items-center gap-2">
+              Explore robots <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/guides" className="bg-transparent border border-white/20 px-6 py-3 rounded-full text-sm font-medium hover:bg-white/5 transition-colors">
+              Help me choose
+            </Link>
           </div>
           
-          <div className="flex-1 w-full relative hidden lg:block">
-            {/* Placeholder for hero image */}
-            <div className="aspect-[4/3] bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center justify-center p-8 relative overflow-hidden">
-               <div className="text-center z-10">
-                 <p className="font-serif text-2xl italic text-muted/50">"Robots for a more capable India"</p>
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
-            </div>
+          <div className="absolute bottom-8 right-6">
+            <Link href="/robots?type=dogs" className="text-xs text-muted hover:text-[#E8C988] flex items-center gap-1">
+              Discover robot dogs <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="max-w-[1280px] mx-auto px-4 md:px-8 lg:px-16 w-full -mt-8 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-          {[
-            "Education & STEM", "Research & Development", "Industry & Manufacturing", 
-            "Inspection & Surveillance", "Hospitality & Retail", "Agriculture & Outdoor", "Home & Personal"
-          ].map((category) => (
-            <Link href={`/robots?category=${encodeURIComponent(category)}`} key={category} className="bg-[#1a2226] border border-white/10 rounded-xl p-4 flex flex-col items-center text-center gap-3 hover:bg-white/10 transition-colors shadow-lg">
-              <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-accent">
-                <div className="w-5 h-5 border-2 border-current rounded-sm" />
-              </div>
-              <span className="text-xs font-medium leading-tight text-foreground">{category}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Section */}
-      <section className="max-w-[1280px] mx-auto px-4 md:px-8 lg:px-16 w-full grid grid-cols-1 lg:grid-cols-3 gap-8 pt-8">
+      <div className="max-w-[1400px] mx-auto px-6 py-20 space-y-32">
         
-        {/* Editorial Feature */}
-        <div className="col-span-1 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-accent mb-4 block">Featured Story</span>
-            <h2 className="text-2xl font-serif mb-4 text-foreground leading-snug">How Indian schools are using robotics to build real world skills</h2>
-            <p className="text-sm text-muted mb-6">
-              From Bengaluru to Bhubaneswar, robotics is moving from extra-curricular to essential learning.
-            </p>
-          </div>
-          <Link href="/guides/schools-robotics" className="text-accent flex items-center gap-2 text-sm font-semibold hover:underline">
-            Read the full story <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {/* Featured Robots */}
-        <div className="col-span-1 lg:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted">Featured Robots</span>
-            <Link href="/robots" className="text-accent text-sm font-semibold flex items-center gap-1 hover:underline">
-              View all <ArrowRight className="w-4 h-4" />
+        {/* 2. Browse by robot type */}
+        <section>
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="font-serif text-3xl text-[#E8C988]">Browse by robot type</h2>
+            <Link href="/robots" className="text-sm text-muted hover:text-[#E8C988] flex items-center gap-1 transition-colors">
+              View all types <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { title: 'Humanoids', desc: 'Human-like robots for work and everyday life' },
+              { title: 'Robot dogs', desc: 'Agile, versatile and always ready' },
+              { title: 'Robotic pets', desc: 'Companion robots for home and learning' },
+              { title: 'Wheeled robots', desc: 'Mobile robots for delivery and service' },
+              { title: 'Robotic arms', desc: 'Precision, power and automation for industry' },
+            ].map((type) => (
+              <Link href={`/robots?category=${type.title.toLowerCase()}`} key={type.title} className="group flex flex-col block border border-white/5 bg-[#0A0A0A] hover:border-white/10 transition-colors rounded-sm overflow-hidden">
+                <div className="aspect-[4/5] bg-[#121312] w-full border-b border-white/5" />
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-medium text-[15px] mb-1 group-hover:text-[#E8C988] transition-colors">{type.title}</h3>
+                    <p className="text-xs text-muted leading-relaxed">{type.desc}</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-[#E8C988] mt-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. Find robots for your needs */}
+        <section>
+          <div className="mb-8">
+            <h2 className="font-serif text-3xl text-[#E8C988]">Find robots for your needs</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {[
+              { title: 'Home & Personal', desc: 'Everyday life and companionship' },
+              { title: 'Business & Services', desc: 'Serve, deliver and assist' },
+              { title: 'Industry & Fieldwork', desc: 'Manufacture, inspect and automate' },
+              { title: 'Learning & Research', desc: 'Learn, build and experiment' },
+            ].map((need) => (
+              <Link href={`/robots?need=${need.title.toLowerCase()}`} key={need.title} className="group block border border-white/5 bg-[#0A0A0A] hover:border-white/10 transition-colors rounded-sm overflow-hidden">
+                <div className="aspect-video bg-[#121312] w-full border-b border-white/5" />
+                <div className="p-4">
+                  <h3 className="font-medium text-[15px] mb-1 group-hover:text-[#E8C988] transition-colors">{need.title}</h3>
+                  <p className="text-xs text-muted mb-3">{need.desc}</p>
+                  <ArrowRight className="w-4 h-4 text-[#E8C988] opacity-70 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. Explore by brand */}
+        <section>
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="font-serif text-3xl text-[#E8C988]">Explore by brand</h2>
+            <Link href="/brands" className="text-sm text-muted hover:text-[#E8C988] flex items-center gap-1 transition-colors">
+              View all brands <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-[500px]">
+            {/* Unitree Main */}
+            <div className="lg:col-span-2 border border-white/5 bg-[#0A0A0A] rounded-sm p-12 flex flex-col justify-between relative overflow-hidden group">
+              <div className="relative z-10 max-w-sm">
+                <h3 className="font-serif text-5xl mb-4 text-white">Unitree</h3>
+                <p className="text-muted text-sm leading-relaxed mb-6">
+                  Advanced legged and humanoid robots for research, industry and everyday use.
+                </p>
+                <Link href="/brands/unitree" className="inline-flex border border-white/20 px-5 py-2.5 rounded-full text-xs font-medium hover:bg-white/5 transition-colors items-center gap-2">
+                  Explore the range <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+              <div className="absolute right-0 bottom-0 w-[60%] h-full bg-[#121312]" />
+            </div>
+            
+            {/* Side Brands */}
+            <div className="flex flex-col gap-4">
+              {[
+                { title: 'Miko', desc: 'Social robots for learning and companionship' },
+                { title: 'PUDU', desc: 'Commercial robots for service and delivery' },
+                { title: 'Dreame', desc: 'Home robots for a smarter everyday' },
+              ].map((brand) => (
+                <Link href={`/brands/${brand.title.toLowerCase()}`} key={brand.title} className="flex-1 border border-white/5 bg-[#0A0A0A] hover:border-white/10 transition-colors rounded-sm flex items-center p-6 group overflow-hidden relative">
+                  <div className="relative z-10 w-1/2">
+                    <h3 className="font-serif text-2xl mb-2">{brand.title}</h3>
+                    <p className="text-xs text-muted leading-relaxed mb-4">{brand.desc}</p>
+                    <ArrowRight className="w-4 h-4 text-[#E8C988] opacity-70 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="absolute right-0 top-0 w-1/2 h-full bg-[#121312]" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Explore robots */}
+        <section>
+          <div className="mb-8">
+            <h2 className="font-serif text-3xl text-[#E8C988]">Explore robots</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Robot Card 1 */}
-            <Link href="/robots/emo-desktop" className="bg-[#1a2226] border border-white/10 rounded-2xl p-4 flex flex-col hover:bg-white/10 transition-colors">
-              <div className="aspect-square bg-white/5 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center">
-                 <span className="text-xs text-muted/50 font-serif">Image</span>
-              </div>
-              <h3 className="font-semibold text-sm mb-1 text-foreground">EMO Desktop Companion</h3>
-              <div className="mt-auto pt-4 flex flex-col gap-1">
-                <span className="text-lg font-serif text-foreground">₹49,900</span>
-                <span className="text-xs text-muted">Indicative price</span>
-              </div>
-            </Link>
+            {[
+              { title: 'Unitree Go2', desc: 'Agile and intelligent quadruped robot for research, education and real-world applications.' },
+              { title: 'Miko 3', desc: 'Social companion robot for children, families and learning environments.' },
+              { title: 'PUDU BellaBot', desc: 'Autonomous delivery robot for restaurants, hotels, retail and public spaces.' },
+            ].map((robot) => (
+              <div key={robot.title} className="border border-white/5 bg-[#0A0A0A] rounded-sm flex flex-col overflow-hidden group">
+                <div className="aspect-video bg-[#121312] w-full border-b border-white/5 relative" />
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl mb-2">{robot.title}</h3>
+                  <p className="text-xs text-muted mb-4 leading-relaxed flex-1">{robot.desc}</p>
+                  
+                  <div className="mb-5">
+                    <span className="inline-block border border-white/10 text-xs px-2 py-1 text-muted rounded-sm">Sourcing assistance</span>
+                  </div>
 
-            {/* Robot Card 2 */}
-            <Link href="/robots/stem-rover" className="bg-[#1a2226] border border-white/10 rounded-2xl p-4 flex flex-col hover:bg-white/10 transition-colors">
-              <div className="aspect-square bg-white/5 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center">
-                 <span className="text-xs text-muted/50 font-serif">Image</span>
+                  <Link href={`/robots/${robot.title.toLowerCase().replace(/ /g, '-')}`} className="w-full bg-[#E8C988] text-black py-2.5 rounded-sm text-sm font-semibold hover:bg-[#E8C988]/90 transition-colors flex items-center justify-center gap-2 mb-3">
+                    Explore robot <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  
+                  <div className="flex items-center justify-between text-xs text-[#E8C988]">
+                    <span className="hover:underline cursor-pointer">Request India price</span>
+                    <label className="flex items-center gap-2 cursor-pointer text-muted hover:text-foreground">
+                      <input type="checkbox" className="rounded-sm border-white/20 bg-transparent" />
+                      Compare
+                    </label>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-semibold text-sm mb-1 text-foreground">STEM Rover Kit</h3>
-              <div className="mt-auto pt-4 flex flex-col gap-1">
-                <span className="text-lg font-serif text-foreground">₹8,500</span>
-                <span className="text-xs text-muted">Indicative price</span>
-              </div>
-            </Link>
-
-            {/* Robot Card 3 */}
-            <Link href="/robots/unitree-go2" className="bg-[#1a2226] border border-white/10 rounded-2xl p-4 flex flex-col hover:bg-white/10 transition-colors">
-              <div className="aspect-square bg-white/5 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center">
-                 <span className="text-xs text-muted/50 font-serif">Image</span>
-              </div>
-              <h3 className="font-semibold text-sm mb-1 text-foreground">Unitree Go2 Research</h3>
-              <div className="mt-auto pt-4 flex flex-col gap-1">
-                <span className="text-lg font-serif text-foreground">₹3,75,000</span>
-                <span className="text-xs text-muted">Quote required</span>
-              </div>
-            </Link>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Value props */}
-      <section className="max-w-[1280px] mx-auto px-4 md:px-8 lg:px-16 w-full py-8 mt-4 border-t border-white/10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-sm mb-1 text-foreground">Real use cases from Indian customers</h4>
-              <p className="text-xs text-muted">schools, businesses and researchers</p>
+        {/* 6. Mid CTA */}
+        <section className="relative border border-white/5 rounded-sm overflow-hidden py-24 px-12 text-center flex flex-col items-center bg-[#0A0A0A]">
+          <div className="relative z-10 max-w-2xl">
+            <h2 className="font-serif text-4xl mb-4 text-white">One robot or an entire operation.<br/>Start with what you need to achieve.</h2>
+            <p className="text-muted mb-10">Tell us about the task, your budget and where the robot will be used.</p>
+            <div className="flex items-center justify-center gap-4">
+              <Link href="/advice" className="bg-[#E8C988] text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#E8C988]/90 transition-colors">
+                Help me choose a robot
+              </Link>
+              <Link href="/contact" className="border border-white/20 px-6 py-3 rounded-full text-sm font-medium hover:bg-white/5 transition-colors">
+                Discuss a business project
+              </Link>
             </div>
           </div>
-          <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-sm mb-1 text-foreground">Transparent India pricing</h4>
-              <p className="text-xs text-muted">with indicative ranges</p>
-            </div>
+        </section>
+
+        {/* 7. Buying & ownership guides */}
+        <section>
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="font-serif text-3xl text-[#E8C988]">Buying & ownership guides</h2>
+            <Link href="/guides" className="text-sm text-muted hover:text-[#E8C988] flex items-center gap-1 transition-colors">
+              View all guides <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-sm mb-1 text-foreground">Support clarity</h4>
-              <p className="text-xs text-muted">know who sells, services and warranties</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { title: 'Buying your first robot in India', desc: 'Key considerations, use cases and expert tips to get started.' },
+              { title: 'What does owning a robot really cost?', desc: 'A practical guide to total cost of ownership in India.' },
+              { title: 'Robot dogs: what can they actually do?', desc: 'Capabilities, real world applications and limitations.' },
+            ].map((guide) => (
+              <Link href={`/guides/${guide.title.toLowerCase().replace(/ /g, '-')}`} key={guide.title} className="group block">
+                <div className="aspect-[16/7] bg-[#121312] w-full border border-white/5 rounded-sm mb-4 overflow-hidden relative" />
+                <h3 className="font-medium text-[15px] mb-2 group-hover:text-[#E8C988] transition-colors">{guide.title}</h3>
+                <p className="text-xs text-muted mb-3 leading-relaxed">{guide.desc}</p>
+                <div className="text-xs text-[#E8C988] flex items-center gap-1">
+                  Read guide <ArrowRight className="w-3 h-3" />
+                </div>
+              </Link>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 8. Partner CTA */}
+        <section className="border-t border-b border-white/5 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="font-serif text-2xl mb-2 text-white">Bring your robots closer to Indian customers.</h3>
+            <p className="text-sm text-muted">Explore listing, distribution and India market support.</p>
+          </div>
+          <Link href="/manufacturers" className="bg-[#E8C988] text-black px-6 py-3 rounded-sm text-sm font-semibold hover:bg-[#E8C988]/90 transition-colors flex items-center gap-2">
+            Partner with Robot India <ArrowRight className="w-4 h-4" />
+          </Link>
+        </section>
+
+      </div>
     </div>
   );
 }
